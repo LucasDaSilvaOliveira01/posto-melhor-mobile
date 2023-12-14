@@ -1,0 +1,7 @@
+{
+  "name": "posto-melhor-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
