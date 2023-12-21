@@ -1,12 +1,12 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'posto-melhor-mobile',
-  webDir: 'www',
-  server: {
-    androidScheme: 'https'
-  }
+	appId: 'com.portable.postoMelhor',
+	appName: 'Posto Melhor',
+	webDir: 'www',
+	server: {
+		androidScheme: 'https',
+	},
 };
 
 export default config;

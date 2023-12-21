@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Mapa</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <div class="capacitor-google-map" id="map"></div>
+  </div>
+
+  <div class="floating-card">
+    <div class="card-content">
+      <div class="header">
+        <strong>Bem Vindo! Você está aqui.</strong>
+        <p>Preço dos combustíveis:</p>
+      </div>
+      <div class="list-item">
+        <img src="assets/icon/logo_grey.png" style="width: 20px;" alt="Posto Ipiranga" />
+        <div class="info">
+          <div>Posto Ipiranga, Rua Antônio Sá, 357</div>
+          <div>Distância: 1.300 m</div>
+          <div>Preço: R$ 3,975</div>
+        </div>
+      </div>
+      <!-- Repetir o .list-item para cada posto de combustível -->
+    </div>
+  </div>
+
+</ion-content>
