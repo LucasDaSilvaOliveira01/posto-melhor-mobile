@@ -1,7 +1,8 @@
 {
   "name": "posto-melhor-mobile",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

@@ -71,19 +71,19 @@ export class GasStation {
     }
   }
 
-  private _id: string;
-  private _name: string;
-  private _logo: string;
-  private _address: string;
-  private _logoPin: string;
-  private _distance: number;
-  private _reference: string;
-  private _latitude: number;
-  private _longitude: number;
-  private _phone: string;
-  private _products: Product[];
-  private _services: Service[];
-  private _currentProduct: Product;
+  private _id!: string;
+  private _name!: string;
+  private _logo!: string;
+  private _address!: string;
+  private _logoPin!: string;
+  private _distance!: number;
+  private _reference!: string;
+  private _latitude!: number;
+  private _longitude!: number;
+  private _phone!: string;
+  private _products!: Product[];
+  private _services!: Service[];
+  private _currentProduct!: Product;
 
   get id(): string {
     return this._id;

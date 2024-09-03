@@ -1,0 +1,120 @@
+.menu-main {
+    background-color: #153670;
+    height: 100vh;
+}
+.menu-content {
+    padding-right: 20px;
+
+    >a:nth-child(1) {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        padding: 20px;
+        border-bottom: 2px solid rgb(178, 174, 174);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.332);
+
+        img {
+            width: 25px;
+        }
+    }
+
+    >a:nth-child(2) {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 24px;
+        padding: 20px;
+        border-bottom: 2px solid rgb(178, 174, 174);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.332);
+
+        div:nth-child(1) {
+            display: flex;
+            justify-items: center;
+            gap: 10px;
+
+            img {
+                width: 25px;
+            }
+        }
+
+        div:nth-child(2) {
+            img {
+                position: absolute;
+                width: 25px;
+                transform: translateY(-10px) rotate(90deg);
+                transition: all 200ms ease-in-out;
+            }
+        }
+    }
+
+    >a:nth-child(4) {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        padding: 20px;
+        border-bottom: 2px solid rgb(178, 174, 174);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.332);
+
+        img {
+            width: 25px;
+        }
+    }
+}
+
+.dropdown-list-menu {
+    transition: all 200ms ease-in-out;
+    overflow-y: hidden;
+    height: 0px;
+}
+
+.dropdown-list-item {
+    a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 2px solid rgb(178, 174, 174);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.332);
+        padding: 20px 0px 20px 50px;
+        transition: all 200ms ease-in-out;
+
+        img {
+            width: 20px !important;
+        }
+
+        span {
+            font-size: 14px;
+        }
+    }
+}
+
+.footer-menu {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    position: absolute;
+    text-align: center;
+    bottom: 20px;
+    img {
+        width: 60px;
+    }
+
+    p {
+        color: white;
+        font-weight: bold;
+        font-size: 14px !important;
+        margin: 0px;
+    }
+}

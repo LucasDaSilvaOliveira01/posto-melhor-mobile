@@ -1,0 +1,190 @@
+$gray_text: #aaaaaa;
+$gray_dark: #999899;
+
+.list-header {
+  float: left;
+  height: 38px;
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 100%;
+}
+
+.list-header-left {
+  align-items: center;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  color: $gray_dark;
+  display: flex;
+  float: left;
+  font-size: 10px;
+  height: 38px;
+  justify-content: center;
+  padding: 5px;
+  text-align: center;
+  width: 100px;
+}
+
+.list-header-right {
+  display: table;
+  float: right;
+  height: 100%;
+  padding-left: 5px;
+  width: calc(100% - 125px);
+}
+
+.list-header-right-child {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.list-item-right {
+  border-radius: 15px;
+  float: right;
+  font-size: 10px;
+}
+
+.ion-list-gasstation {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 60px;
+}
+
+.ion-row-gasstation {
+  display: flex;
+  margin-right: 0;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-address {
+  padding-right: 10px;
+}
+
+.label-money {
+  padding-right: 5px;
+  font-size: 10px;
+  display: flex;
+  align-items: end;
+}
+
+.price-prod {
+  display: flex;
+  justify-items: baseline;
+  padding-left: 5px;
+}
+
+.time-service {
+  width: 60px;
+}
+
+.img-gasstation-logo {
+  max-width: 30px;
+  padding-right: 5px;
+  width: 30px;
+}
+
+.img-money {
+  max-width: 15px;
+  width: 15px;
+}
+
+.img-oil {
+  margin-right: 4px;
+  width: 14px;
+}
+
+.label-location {
+  color: $gray_dark;
+  font-size: x-small;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.label-title {
+  color: #949394;
+  font-size: larger;
+}
+
+.size-scroll-card {
+  bottom: 0;
+  overflow: auto;
+  top: 50px;
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+ion-item {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.padding-5-7 {
+  padding: 5.7px;
+}
+
+.padding-5 {
+  padding: 5px;
+}
+
+.color-gray-dark {
+  color: $gray_dark;
+}
+
+.font-10 {
+  font-size: 10px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-13 {
+  font-size: 13px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.no-scroll .scroll-content {
+  overflow: hidden;
+}
+
+.scroll .scroll-content {
+  overflow-y: visible;
+}
+
+.label-footer {
+  color: #d3d1d1;
+  display: block;
+  font-size: small;
+  margin: 15px;
+  text-align: center;
+}
+
+.full-width {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.badge-green {
+  background-color: green;
+  color: white;
+}
+
+.item-row-gasstation {
+  display: flex;
+  justify-items: center;
+  justify-content: space-between !important;
+  width: 100%;
+}

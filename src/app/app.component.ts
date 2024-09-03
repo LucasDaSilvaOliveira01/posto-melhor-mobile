@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Parameter } from '../entity/parameter';
 import { Product } from '../entity/product';
@@ -23,7 +23,13 @@ export class AppComponent {
 
   public version: string = "1.0.0";
 
-  constructor(private menu: MenuController) {
+  dropDownMenuVisible: boolean = false;
+
+  constructor(
+    private menu: MenuController,
+    private renderer: Renderer2,
+    private el: ElementRef
+  ) {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
@@ -36,9 +42,27 @@ export class AppComponent {
     window.open(AppComponent.URL, AppComponent.TARGET_SYSTEM);
   }
 
+  toggleDropListMenu() {
+
+    const dropDnwMenu = this.el.nativeElement.querySelector(".dropdown-list-menu");
+    const arrowIcon = this.el.nativeElement.querySelector(".arrow-drop-down-menu");
+
+    if (!this.dropDownMenuVisible) {
+      this.renderer.setStyle(dropDnwMenu, 'height', '246.4px');
+      this.renderer.setStyle(arrowIcon, 'transform', 'translateY(-10px)  rotate(0deg)');
+      this.dropDownMenuVisible = true;
+    } else {
+      this.renderer.setStyle(dropDnwMenu, 'height', '0px');
+      this.renderer.setStyle(arrowIcon, 'transform', 'translateY(-10px)  rotate(90deg)');
+      this.dropDownMenuVisible = false;
+    }
+
+  }
+
   //Menu navigation
   public appPages = [
-    { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Mapa', url: '/map', icon: 'map' },
+    { title: 'Início', url: '/map', icon: 'map' },
+    { title: 'Preços Por Localização', url: '/filter-product-location' },
+    { title: 'Preço de Combustíveis', url: '/list-price-gas-station' },
   ];
 }

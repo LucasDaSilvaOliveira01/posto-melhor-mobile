@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AlertController, LoadingController, NavController, NavParams, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { AppComponent } from '../../app/app.component';
 import { ConfigurationProvider } from '../../providers/configuration/configuration';
@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
 
 export class HomePage implements OnInit, OnDestroy {
@@ -17,17 +17,18 @@ export class HomePage implements OnInit, OnDestroy {
   private static readonly TITLE = 'Posto Melhor';
   private static readonly MESSAGE = 'Não foi possível baixar todos os dados, verifique sua conexão e tente novamente!';
 
+  private static readonly teste = 'teste';
+
   private observables: Subscription = new Subscription();
 
   public constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     public platform: Platform,
     public configProvider: ConfigurationProvider,
     public loading: LoadingController,
     public alertCtrl: AlertController,
     private router: Router
-  ) {   }
+  ) { }
 
   public ngOnInit(): void {
     this.loadAllData();
@@ -37,8 +38,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   private async loadAllData() {
-    await this.platform.ready();
-
     const parametersObservable = this.configProvider.getDefaultParameters();
     const productsObservable = this.configProvider.getDefaultProducts();
     const servicesObservable = this.configProvider.getDefaultServices();
@@ -65,7 +64,7 @@ export class HomePage implements OnInit, OnDestroy {
             this.alert();
             return;
           }
-          this.navCtrl.navigateRoot('../map/map.page');
+          this.router.navigateByUrl('/map');
         });
       },
       () => {

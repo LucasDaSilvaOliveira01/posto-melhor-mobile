@@ -1,0 +1,98 @@
+<!--
+  Generated template for the ListPriceGasStationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <div style="background-color: #f7f7f7;">
+    <!-- <ion-toolbar> -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <!-- </ion-toolbar> -->
+  </div>
+</ion-header>
+
+<ion-content class="no-scroll">
+  <div class="list-header">
+    <!-- <h1>{{title}}</h1> -->
+    <h1 style="color: gray;text-align: center;margin-bottom: 10px;">{{title}}</h1>
+    <div class="list-header-left">
+      <img text-center src="assets/imgs/oil.png" class="img-oil" />{{ selectedProduct }}
+    </div>
+    <div text-right class="list-header-right">
+      <div class="list-header-right-child">
+        <ion-badge text-wrap color="pigment_green" class="font-no-bold list-item-right badge-green">
+          {{ showSelectedLocation() }}
+        </ion-badge>
+
+        <ion-label no-padding no-margin text-wrap class="label-location">Minha localização: {{ myAddress }} </ion-label>
+      </div>
+    </div>
+  </div>
+
+  <ion-scroll no-lines class="size-scroll-card scroll full-width" scrollY="true" no-padding>
+    <ion-list no-margin no-padding class="ion-list-gasstation">
+      <div *ngIf="items.length > 0">
+        <button no-border no-padding class=" full-width" *ngFor="let item of items; let i = index"
+          (click)="traceRoute(item, item.distance, item.latitude, item.longitude)">
+          <ion-item no-padding no-margin tappable>
+            <ion-row class="ion-row-gasstation full-width">
+
+              <div class="ion-row-gasstation">
+                <div no-padding class="ion-row-gasstation-line"><img [src]="item.logo" class="img-gasstation-logo" />
+                </div>
+  
+                <div no-padding text-wrap class="full-width ion-row-gasstation-line label-address color-gray-dark font-12"
+                  text-left>
+                  <span class="font-bold">{{ item.name }}</span><br /> {{ item.address }}<br />
+                  <span class="font-bold">{{ showDistanceOrReference(item) }}</span>{{ showDistanceOrReferenceInfo(item)
+                  }}
+                </div>
+              </div>
+
+              <div class="ion-row-gasstation">
+                <div no-padding class="ion-row-gasstation-line">
+                  <img src="assets/imgs/coin.png" class="img-money " *ngIf="title != 'Serviços'" />
+                </div>
+  
+                <div no-padding text-right class="full-width ion-row-gasstation-line price-prod" *ngIf="title !== 'Serviços'">
+                  <span class="color-gray-dark font-14 font-bold">{{ showCorrectProduct(i, selectedProduct) }}</span>
+                </div>
+  
+                <div no-padding class="ion-row-gasstation-line padding-5" *ngIf="title === 'Serviços'">
+                  <img src="assets/imgs/horario.png" class="img-money " />
+                </div>
+  
+                <div no-padding class="ion-row-gasstation-line time-service" *ngIf="title === 'Serviços'">
+                  <span class="color-gray-dark font-12">{{ showServiceStartTime(i, selectedProduct) }}</span>
+                </div>
+              </div>
+            </ion-row>
+          </ion-item>
+        </button>
+      </div>
+      <div *ngIf="items.length == 0">
+        <p style="color: gray;text-align: center;">
+          <i>Sem postos pela sua região.</i>     
+        </p>
+      </div>
+      <div *ngIf="items == undefined">
+        <p style="color: gray;text-align: center;">
+          <i>Carregando postos...</i>     
+        </p>
+      </div>
+    </ion-list>
+    <ion-label text-center class="label-footer">FIM DOS RESULTADOS</ion-label>
+  </ion-scroll>
+</ion-content>

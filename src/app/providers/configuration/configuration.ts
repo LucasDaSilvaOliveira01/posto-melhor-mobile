@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { mergeMap, map } from 'rxjs/operators';
 import { Observable, pipe, of } from 'rxjs';
-import { URL } from '../../app/constants';
-import { City } from '../../entity/city';
-import { Neighborhood } from '../../entity/neighborhood';
-import { Parameter } from '../../entity/parameter';
-import { Product } from '../../entity/product';
-import { Service } from '../../entity/service';
-import { State } from '../../entity/state';
+import { URL } from '../../constants';
+import { City } from '../../../entity/city';
+import { Neighborhood } from '../../../entity/neighborhood';
+import { Parameter } from '../../../entity/parameter';
+import { Product } from '../../../entity/product';
+import { Service } from '../../../entity/service';
+import { State } from '../../../entity/state';
+import { GoogleMap } from '@capacitor/google-maps';
 
 /*
   Generated class for the ConfigurationProvider provider.
@@ -21,7 +22,7 @@ declare var google: any;
 
 @Injectable()
 export class ConfigurationProvider {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   public getDefaultParameters(): Observable<Parameter[]> {
     const parse = map((response: any) => response.data);
@@ -49,7 +50,7 @@ export class ConfigurationProvider {
 
       return of(products);
     });
-    
+
     return this.http.get(`${URL}products`).pipe(flat);
   }
 
@@ -68,10 +69,11 @@ export class ConfigurationProvider {
 
   public getAddressByGeolocation(latitude: number, longitude: number): Observable<string> {
     return new Observable<string>(observer => {
+
       const geocoder = new google.maps.Geocoder();
       const latLng = new google.maps.LatLng(latitude, longitude);
 
-      geocoder.geocode({ location: latLng }, (results : any, status : any) => {
+      geocoder.geocode({ location: latLng }, (results: any, status: any) => {
         if (status === google.maps.GeocoderStatus.OK && results[0]) {
           const address = results[0].address_components[1].short_name;
           const city = results[0].address_components[3].short_name;
@@ -83,6 +85,7 @@ export class ConfigurationProvider {
           observer.error('Geocoding failed');
         }
       });
+
     });
   }
 
@@ -97,7 +100,7 @@ export class ConfigurationProvider {
           observer.complete();
         } else {
           observer.error("");
-      }
+        }
       });
     });
   }
@@ -145,5 +148,44 @@ export class ConfigurationProvider {
     );
 
     return this.http.get(`${URL}neighborhoods/${cityId}`).pipe(join);
+  }
+
+  public PlotRoute(map: google.maps.Map, latOrigem: number, lngOrigem: number, latDestino: number, lngDestino: number) {
+
+
+    // const url = `https://maps.googleapis.com/maps/api/directions/json?origin=-22.8762011,-43.4280442&destination=-22.8778257,-43.4486404&key=AIzaSyCP77hgD1OVKFj8RfeGjb_oKZNzm94lOo8&mode=driving`;
+    // return this.http.get(url);
+
+    // =======================================================
+
+    const directionsService = new google.maps.DirectionsService();
+
+    const origin = new google.maps.LatLng(latOrigem, lngOrigem);
+    const destination = new google.maps.LatLng(latDestino, lngDestino);
+
+    const request = {
+      origin: origin,
+      destination: destination,
+      travelMode: 'DRIVING', // Modo de viagem (DRIVING para carro, WALKING para caminhar, etc.)
+    };
+
+    directionsService.route(request, (response: any, status: any) => {
+      if (status === 'OK') {
+
+        const route = response.routes[0]; // Obtenha a primeira rota disponível
+
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+
+        directionsRenderer.setMap(map);
+        directionsRenderer.setDirections(response);
+      } else {
+        console.error('Erro ao calcular a rota:', status);
+      }
+    });
+
+    // =======================================================
+
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${latOrigem},${lngOrigem}&destination=${latDestino},${lngDestino}&travelmode=driving`;
+    window.open(url, '_blank');
   }
 }

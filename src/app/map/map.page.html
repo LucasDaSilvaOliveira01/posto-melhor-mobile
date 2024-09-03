@@ -12,22 +12,149 @@
     <div class="capacitor-google-map" id="map"></div>
   </div>
 
-  <div class="floating-card">
+  <div class="floating-card" *ngIf="stationsCard">
     <div class="card-content">
       <div class="header">
-        <strong>Bem Vindo! Você está aqui.</strong>
-        <p>Preço dos combustíveis:</p>
+        <div class="logo-center-circle">
+          <img src="assets/imgs/logo_app_color.png" class="size-logo-app" />
+        </div>
+        <img src="assets/imgs/up_arrow.png"
+          [ngStyle]="{ 'transform': 'rotate(' + arrowRotation + ')', 'transition': 'transform 0.3s ease' }"
+          class="arrow" (click)="toggleStations()" />
+        <h1><strong>Bem Vindo! Você está aqui.</strong></h1>
+        <p>{{currentLocation}}</p>
       </div>
-      <div class="list-item">
-        <img src="assets/icon/logo_grey.png" style="width: 20px;" alt="Posto Ipiranga" />
-        <div class="info">
-          <div>Posto Ipiranga, Rua Antônio Sá, 357</div>
-          <div>Distância: 1.300 m</div>
-          <div>Preço: R$ 3,975</div>
+
+      <div class="curtain-stations">
+        <div class="list-item-header">
+          <p><strong>Preço dos combustíveis:</strong></p>
+          <div class="row">
+            <select [(ngModel)]="opcaoSelecionada" name="combustiveis" id="combustiveis">
+              <option *ngFor="let product of products" [value]="product.name">{{ product.name }}</option>
+            </select>
+            <p style="margin-left: 15px;" class="circulo-verde">Distância máxima: {{formatarDistancia(maxRadius)}}</p>
+          </div>
+          <div class="message-card-stations" *ngIf="!gasStations">
+            Carregando postos...
+          </div>
+          <div class="message-card-stations" *ngIf="loadedGasStations && gasStations.length == 0">
+            Não existem postos na sua redondeza. Tente a consulta por localização ou por bairro.
+          </div>
+
+        </div>
+
+        <div class="scroll-itens">
+          <div *ngFor="let gasStation of gasStations" class="list-item"
+            (click)="goToServicesProductsCard(gasStation.id)">
+            <img [src]="gasStation.logo" style="width: 25px;" />
+            <div class="info">
+              <div><strong> {{ gasStation.name }},<br></strong> {{ gasStation.address }}</div>
+              <div><strong>Distância:</strong> {{ formatarDistancia(gasStation.distance) }}</div>
+            </div>
+
+            <div *ngFor="let productStations of gasStation.products">
+              <ng-container *ngIf="opcaoSelecionada === productStations.name;">
+                R$<span style="font-size: 12px;">{{ formatarPreco(productStations.value) }}</span>
+              </ng-container>
+            </div>
+
+            <ng-container *ngIf="!produtoExiste(gasStation.id);">
+              <span style="font-size: 8px; width: 70px;">Indisponível/Não cadastrado</span>
+            </ng-container>
+
+          </div>
         </div>
       </div>
-      <!-- Repetir o .list-item para cada posto de combustível -->
     </div>
   </div>
 
+  <div class="floating-card" *ngIf="productsServicesCard">
+    <div class="card-content">
+      <div class="header">
+        <img (click)="goToStationsCard()" src="../../assets/imgs/previous.png" class="logo-previous" />
+        <div class="logo-center-circle">
+          <img src="{{urlLogo}}" class="size-logo-app" />
+        </div>
+        <img src="assets/imgs/up_arrow.png"
+          [ngStyle]="{ 'transform': 'rotate(' + arrowRotation + ')', 'transition': 'transform 0.3s ease' }"
+          class="arrow" (click)="toggleStations()" />
+        <h1><strong>{{nameGasStation}}</strong></h1>
+        <p *ngIf="refGasStation && addressGasStation"><strong>Ref: </strong>{{refGasStation}}</p>
+        <p *ngIf="!refGasStation && addressGasStation"><strong>End: </strong>{{addressGasStation}}</p>
+        <p>Telefone: {{phoneGasStation}} | Distância: {{formatarDistancia(distGasStation)}}</p>
+      </div>
+
+      <div class="curtain-services-prods">
+        <div class="list-item-header-prod-serv">
+          <div class="header-content">
+            <div>
+              <h2 *ngIf="showStationProducts">Produtos:</h2>
+              <h2 *ngIf="showStationServices">Serviços:</h2>
+            </div>
+
+            <div>
+              <button id="btn-products" (click)="ShowStationProducts()">Produtos</button>
+              <button id="btn-services" (click)="ShowStationServices()">Serviços</button>
+            </div>
+          </div>
+          <div class="scroll-product-list">
+
+            <div *ngIf="showStationProducts">
+              <div *ngFor="let gasStationProd of gasStationProducts" class="product-list">
+                <div class="product-list-content">
+                  <div>
+                    <img src="../../assets/imgs/gas_station.png" alt="Image Gas Station" width="16px" height="16px">
+                    <p>{{gasStationProd.name}}</p>
+                  </div>
+                  <div>
+                    <img src="../../assets/imgs/coin.png" alt="Image Coin" width="16px" height="16px" />
+                    <p><span>R$</span>{{formatarPreco(gasStationProd.value)}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="message-card-stations" *ngIf="!gasStationProducts && showStationProducts">
+              Carregando produtos...
+            </div>
+
+            <div *ngIf="gasStationProducts && showStationProducts">
+              <div class="message-card-stations" *ngIf="gasStationProducts.length == 0">
+                Sem produtos cadastrados!
+              </div>
+            </div>
+
+            <div *ngIf="showStationServices">
+              <div *ngFor="let service of stationServices" class="product-list">
+                <div class="product-list-content">
+                  <div>
+                    <img src="../../assets/imgs/gas_station.png" alt="Image Gas Station" width="16px" height="16px">
+                    <p>{{service.name}}</p>
+                  </div>
+                  <div>
+                    <img src="../../assets/imgs/horario.png" width="16px" height="16px" alt="Image clock">
+                    <p>{{service.startTime}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="message-card-stations" *ngIf="!stationServices && showStationServices">
+              Carregando serviços...
+            </div>
+
+          </div>
+          <div *ngIf="enableRouteButton" class="btn-route">
+            <button (click)="plotRouteOnClick(latGasStation, longGasStation)"
+              *ngIf="latGasStation && longGasStation">Traçar Rota</button>
+          </div>
+          <div *ngIf="!enableRouteButton" class="btn-route">
+            <button style="background-color: gray;" *ngIf="latGasStation && longGasStation">Indisponível Traçar
+              Rota</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </ion-content>

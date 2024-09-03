@@ -1,11 +1,11 @@
 <ion-app>
   <ion-menu contentId="main-content" class="menu">
-    <ion-header no-border color="cyprus">
+    <!-- <ion-header no-border color="cyprus">
       <ion-toolbar color="cyprus">
       </ion-toolbar>
-    </ion-header>
+    </ion-header> -->
 
-    <ion-content class="ion-no-padding">
+    <!-- <ion-content class="ion-no-padding">
       <ion-list>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
           <ion-item [routerLink]="p.url" routerDirection="root">
@@ -16,15 +16,63 @@
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
-    </ion-content>
+    </ion-content> -->
 
-    <ion-footer>
+    <div class="menu-main">
+      <div class="menu-content">
+        <a href="/map">
+          <img src="../assets/icon/logo_grey.png" alt="Logo"> <span>Início</span>
+        </a>
+        <a (click)="toggleDropListMenu()">
+          <div>
+            <img src="../assets/imgs/search.png" alt="Search"> <span>Pesquisar Postos</span>
+          </div>
+          <div>
+            <img src="../assets/imgs/arrow_drop_down.png" alt="Arrow" class="arrow-drop-down-menu">
+          </div>
+        </a>
+        <div class="dropdown-list-menu">
+          <div class="dropdown-list-item">
+            <a href="/filter-product-location">
+              <img src="../assets/imgs/search.png" alt="Search"> <span>Preços por localização</span>
+            </a>
+          </div>
+          <div class="dropdown-list-item">
+            <a href="/filter-product-city">
+              <img src="../assets/imgs/search.png" alt="Search"> <span>Preços por município/bairro</span>
+            </a>
+          </div>
+          <div class="dropdown-list-item">
+            <a href="/filter-service-location">
+              <img src="../assets/imgs/search.png" alt="Search"> <span>Serviços por localização</span>
+            </a>
+          </div>
+          <div class="dropdown-list-item">
+            <a href="/filter-service-city">
+              <img src="../assets/imgs/search.png" alt="Search"> <span>Serviços por município/bairro</span>
+            </a>
+          </div>
+        </div>
+        <a href="https://painel.postomelhor.com.br/#/login" target="_blank">
+          <img src="../assets/imgs/lock.png" alt="Logo"> <span>Área Restrita</span>
+        </a>
+
+      </div>
+      <div class="footer-menu">
+        <div class="footer-content">
+          <img src="../assets/imgs/Logo_Branca.png" alt="Logo">
+          <p>Versão {{version}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <ion-footer>
       <ion-item text-center class="menu-footer" color="midnight_blue" no-lines>
         <img src="assets/imgs/Logo_Branca.png" class="menu-img-footer" />
         <br>
         Versão 1.0.0
       </ion-item>
-    </ion-footer>
+    </ion-footer> -->
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

@@ -1,0 +1,99 @@
+<!--
+  Generated template for the FilterServiceCityPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header no-border>
+  <ion-navbar transparent>
+    <button ion-button menuToggle color="cyprus"><ion-icon name="menu" color="cyprus"></ion-icon></button>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen padding-right="5%" padding-left="5%" [class]="defaultClass">
+  <img src="assets/imgs/logo_colored.png" class="filter-img" />
+
+  <div text-wrap text-center class="label-title" style="font-size: large;">
+    Serviços em um município/bairro
+  </div>
+
+  <ion-item lines="none" class="wrapper">
+    <ion-label text-right class="label">Serviço:</ion-label>
+    <ion-select
+    placeholder="Selecione um serviço"
+      #newSelect
+      class="filter-select"
+      [selectOptions]="optionsService"
+      [(ngModel)]="selectedService"
+      (ngModelChange)="onChangeServiceSelect(selectedService)"
+    >
+      <ion-select-option *ngFor="let service of services; let i = index" value="{{ service.id }}" [selected]="i === 0"
+        >{{ service.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="wrapper">
+    <ion-label text-right class="label" padding-right="">UF:</ion-label>
+    <ion-select
+      text-left
+      class="filter-select-state"
+      [selectOptions]="optionsState"
+      [(ngModel)]="selectedState"
+      (ngModelChange)="onChangeStateSelect(selectedState)"
+    >
+      <ion-select-option *ngFor="let state of states; let i = index" value="{{ state.id }}">{{ state.initials }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="wrapper">
+    <ion-label text-right class="label">Município:</ion-label>
+    <ion-select
+      class="filter-select"
+      [selectOptions]="optionsCity"
+      [(ngModel)]="selectedCity"
+      (ngModelChange)="onChangeCitiesSelect(selectedCity)"
+    >
+      <ion-select-option *ngFor="let city of cities; let i = index" value="{{ city.id }}">{{ city.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none" class="wrapper">
+    <ion-label text-right class="label">Bairro:</ion-label>
+    <ion-select
+      class="filter-select"
+      [selectOptions]="optionsNeighborhood"
+      [(ngModel)]="selectedNeighborhood"
+      (ngModelChange)="onChangeNeighborhoodSelect(selectedNeighborhood)"
+    >
+      <ion-select-option *ngFor="let neighborhood of neighborhoods; let i = index" value="{{ neighborhood.id }}"
+        >{{ neighborhood.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item no-padding lines="none"></ion-item>
+
+  <div style="width: 100%; text-align: center; display: flex; justify-content: center;">
+    <button
+      ion-button
+      text-center
+      large
+      text-capitalize="false"
+      color="midnight_blue"
+      class="filter-button"
+      (click)="validateForm()"
+    >
+      Pesquisar
+    </button>
+  </div>
+  <ion-item lines="none"></ion-item>
+</ion-content>

@@ -12,7 +12,7 @@ import { ConfigurationProvider } from '../../providers/configuration/configurati
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule.forRoot(),
     HomePageRoutingModule,
     HttpClientModule // Adicionar HttpClientModule aqui
   ],

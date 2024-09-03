@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiKey = 'AIzaSyDNbSnMzTb0HF5dVy_8r-dNSg8yAaxO7TY';
+  private apiKey = 'AIzaSyCP77hgD1OVKFj8RfeGjb_oKZNzm94lOo8';
 
   getApiKey(): string {
     return this.apiKey;

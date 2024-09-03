@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { MapPageRoutingModule } from './map-routing.module';
 
 import { MapPage } from './map.page';
+import { ConfigurationProvider } from '../providers/configuration/configuration';
+import { GasStationProvider } from '../providers/gas-station/gas-station';
+import { SharedDataService } from '../services/shared-data.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule.forRoot(),
     MapPageRoutingModule
   ],
-  declarations: [MapPage]
+  declarations: [MapPage],
+  providers: [ConfigurationProvider, GasStationProvider]
 })
 export class MapPageModule {}

@@ -1,0 +1,35 @@
+  .wrapper-content {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .dialog {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+    display: block;
+    left: 50%;
+    margin: 0 auto;
+    max-width: 85%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+  }
+
+  .dialog-img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15%;
+    width: 25%;
+  }
+
+  .dialog-title {
+    color: #8e8e8e;
+    font-size: xx-large;
+  }
+
+  .dialog-subtitle {
+    color: #8e8e8e;
+    font-size: medium;
+    margin-bottom: 15%;
+  }

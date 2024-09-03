@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 import { Observable, pipe, of } from 'rxjs';
-import { URL } from '../../app/constants';
-import { GasStation } from '../../entity/gas-station';
-import { GasStationMap } from '../../entity/gas-station-response';
+import { URL } from '../../constants';
+import { GasStation } from '../../../entity/gas-station';
+import { GasStationMap } from '../../../entity/gas-station-response';
 
 /*
   Generated class for the GasStationProvider provider.

@@ -1,0 +1,71 @@
+page-filter-service-city {
+  background-color: #fff;
+  
+  .filter-img {
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 1%;
+    width: 65px;
+  }
+
+  .label-title {
+    font-size: large;
+    margin-bottom: 10%;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .filter {
+    color: #153670;
+    font-size: large;
+  }
+
+  .filter-select {
+    background-color: #e9eeef;
+    border-radius: 3px;
+    color: #5e5e5e;
+    font-size: small;
+    max-width: 65%;
+    width: 65%;
+  }
+
+  .filter-select-state {
+    background-color: #e9eeef;
+    border-radius: 3px;
+    color: #5e5e5e;
+    font-size: small;
+    margin-left: -8px;
+    max-width: 25% !important;
+    width: 25%;
+  }
+
+  .wrapper {
+    float: left;
+    margin-top: 5%;
+    width: 100%;
+  }
+
+  .label {
+    color: #153670 !important;
+    font-size: medium;
+    max-width: 35%;
+    width: 35%;
+  }
+
+  .label-subtitle {
+    color: #636363;
+    font-size: medium;
+    margin-top: 7%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .filter-button {
+    border-radius: 7px;
+    display: block;
+    font-size: medium;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 95% !important;
+  }
+}

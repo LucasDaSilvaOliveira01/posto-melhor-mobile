@@ -1,0 +1,81 @@
+<!--
+  Generated template for the FilterServiceLocationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header no-border>
+  <ion-navbar transparent>
+    <button ion-button menuToggle color="cyprus"><ion-icon name="menu" color="cyprus"></ion-icon></button>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="filter-content" padding-right="5%" padding-left="5%">
+  <img src="assets/imgs/logo_colored.png" class="filter-img" />
+
+  <!-- <ion-label text-wrap text-center class="label-title" style="font-size: large;">
+    Pesquisar serviços por<br />
+    sua localização atual
+  </ion-label> -->
+
+  <div style="text-align: center;">
+    <ion-label class="label-title">
+      Serviços próximos de mim
+    </ion-label>
+  </div>
+
+  <div class="wrapper margin-bottom-20px">
+    <ion-label text-right class="label">Serviço:</ion-label>
+    <ion-select class="filter-select" [(ngModel)]="selectedService" placeholder="Selecione um serviço"
+      (ngModelChange)="onChangeServiceSelect(selectedService)">
+      <ion-select-option *ngFor="let service of services; let i = index" value="{{ service.id }}"
+        [selected]="i === 0">{{ service.name }}
+      </ion-select-option>
+    </ion-select>
+  </div>
+  <!-- <ion-range
+    pin="true"
+    class="range"
+    dualKnobs="false"
+    snaps="true"
+    min="{{ minDistance }}"
+    max="{{ maxDistance }}"
+    [(ngModel)]="structure"
+    [step]="50"
+    [dualKnobs]="false"
+  >
+  </ion-range> -->
+
+  <div style=" width: 80%;margin: auto;">
+    <div> <ion-label class="full-width">Distância máxima:</ion-label> </div>
+
+    <input [(ngModel)]="structure" [step]="50" min="{{ minDistance }}" max="{{ maxDistance }}" class="range"
+      type="range" (change)="onChangeStructure($event)" />
+  </div>
+
+  <div class="label-meters-space">
+    <div class="label-meters">{{ minDistance }}m</div>
+    <div class="badge-meters font-bold">{{ structure }}m</div>
+    <div class="label-meters">{{ maxDistance }}m</div>
+  </div>
+
+  <!-- <ion-item no-lines class="wrapper label-meters-space">
+    <ion-label text-left no-padding no-margin class="label-meters">{{ (formattedMinDistance) }}m</ion-label>
+    <ion-label text-center item-end text-wrap class="badge-meters font-bold"> {{ (formattedStructure) }}m </ion-label>
+    <ion-label text-right no-padding no-margin class="label-meters">{{ (formattedMaxDistance) }}m</ion-label>
+  </ion-item> -->
+
+  <div style="width: 100%; text-align: center;display:flex;justify-content:center;">
+    <button class="filter-button" (click)="searchGasStations()">
+      Pesquisar
+    </button>
+  </div>
+</ion-content>

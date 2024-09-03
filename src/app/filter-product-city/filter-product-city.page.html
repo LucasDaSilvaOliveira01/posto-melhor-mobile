@@ -1,0 +1,78 @@
+<!-- <ion-header no-border>
+  <ion-navbar transparent>
+    <button ion-button menuToggle color="cyprus"><ion-icon name="menu" color="cyprus"></ion-icon></button>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="margin-top: 30px;" fullscreen [class]="defaultClass">
+  <div class="main-content">
+    <img src="assets/imgs/logo_colored.png" class="filter-img" />
+
+    <div class="label-title" style="font-size: large;">
+      Preços em um município/bairro
+    </div>
+
+    <!-- <ion-item class="wrapper products-input">
+      <p class="label">Produto:</p>
+      <ion-select #newSelect class="filter-select" [(ngModel)]="selectedProduct"
+        (ngModelChange)="onChangeProductSelect(selectedProduct)">
+        <ion-option *ngFor="let product of products; let i = index" value="{{ product.id }}" [selected]="i === 0">{{
+          product.name }}
+        </ion-option>
+      </ion-select>
+    </ion-item> -->
+    <div class="wrapper products-input">
+      <p class="label">Produto:</p>
+      <ion-select class="filter-select" [(ngModel)]="selectedProduct" placeholder="Selecione um produto"
+        (ngModelChange)="onChangeProductSelect(selectedProduct)">
+        <ion-select-option *ngFor="let product of products; let i = index" value="{{ product.id }}"
+          [selected]="i === 0">{{
+          product.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+
+    <div no-lines class="wrapper uf-input">
+      <p class="label">UF:</p>
+      <ion-select text-left [(ngModel)]="selectedState" class="filter-select-state"
+        (ngModelChange)="onChangeStateSelect(selectedState)">
+        <ion-select-option *ngFor="let state of states; let i = index" value="{{ state.id }}">{{
+          state.initials
+          }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="wrapper products-input">
+      <ion-label text-right class="label">Município:</ion-label>
+      <ion-select [(ngModel)]="selectedCity" class="filter-select" (ngModelChange)="onChangeCitySelect(selectedCity)">
+        <ion-select-option *ngFor="let city of cities; let i = index" value="{{ city.id }}">{{ city.name
+          }}</ion-select-option>
+      </ion-select>
+    </div>
+    <div no-lines class="wrapper products-input">
+      <ion-label text-right class="label">Bairro:</ion-label>
+      <ion-select [(ngModel)]="selectedNeighborhood" class="filter-select"
+        (ngModelChange)="onChangeNeighborhoodSelect(selectedNeighborhood)">
+        <ion-select-option *ngFor="let neighborhood of neighborhoods; let i = index" value="{{ neighborhood.id }}">{{
+          neighborhood.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+
+    <div style="width: 100%; text-align: center; display: flex; justify-content: center;">
+
+      <button class="filter-button" (click)="validateForm()">
+        Pesquisar
+      </button>
+    </div>
+  </div>
+</ion-content>

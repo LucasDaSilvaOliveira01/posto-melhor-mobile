@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Posto Melhor</string>
+    <string name="title_activity_main">Posto Melhor</string>
+    <string name="package_name">com.portable.postoMelhor</string>
+    <string name="custom_url_scheme">com.portable.postoMelhor</string>
+</resources>
