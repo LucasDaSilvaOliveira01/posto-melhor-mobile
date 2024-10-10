@@ -346,13 +346,23 @@ export class MapPage implements OnInit {
             this.gasStations = data;
 
             this.gasStations.forEach(gasstation => {
+
+              console.log(gasstation.flagId)
+
+              let pathLogoMarker = "default_pin.png";
+
+              if(gasstation.flagId == 6 || gasstation.flagId == 7) pathLogoMarker = "ale-logo-marker.png";
+              if(gasstation.flagId == 74 || gasstation.flagId == 109) pathLogoMarker = "shell-logo-marker.png";
+              if(gasstation.flagId == 65) pathLogoMarker = "ipiranga-logo-marker.png";
+              if(gasstation.flagId == 89) pathLogoMarker = "br-logo-marker.png";
+
               let markerPosition2 = new google.maps.LatLng(gasstation.latitude, gasstation.longitude);
               let marker2 = new google.maps.Marker({
                 position: markerPosition2,
                 map: mapForPlotRoute,
                 title: gasstation.name,
                 icon: {
-                  url: 'assets/imgs/default_pin.png',  // Caminho para a imagem do ícone
+                  url: 'assets/imgs/'+pathLogoMarker,  // Caminho para a imagem do ícone
                   scaledSize: new google.maps.Size(30, 35)  // Tamanho redimensionado do ícone (largura, altura)
                 }
               });
@@ -365,7 +375,7 @@ export class MapPage implements OnInit {
               const newMarker: Marker = {
                 coordinate: { lat: elem.latitude, lng: elem.longitude },
                 title: elem.name,
-                iconUrl: 'assets/imgs/default_pin.png',
+                iconUrl: 'assets/imgs/logo_app_color.png',
                 iconSize: { width: 22, height: 32 }
               };
 

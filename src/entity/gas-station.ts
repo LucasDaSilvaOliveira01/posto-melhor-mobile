@@ -15,6 +15,7 @@ export class GasStation {
     gasStation.latitude = json.latitude;
     gasStation.phone = json.telephones ? json.telephones[0].number : '';
     gasStation.product = new Product("0", "Gasolina Comun", 0);
+    gasStation.flagId = json.flag.id;
 
     const products: Product[] = [];
     if (json.products) {
@@ -84,6 +85,15 @@ export class GasStation {
   private _products!: Product[];
   private _services!: Service[];
   private _currentProduct!: Product;
+  private _flagId!: number;
+
+  get flagId(): number {
+    return this._flagId;
+  }
+
+  set flagId(value: number) {
+    this._flagId = value;
+  }
 
   get id(): string {
     return this._id;
