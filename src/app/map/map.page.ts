@@ -107,8 +107,7 @@ export class MapPage implements OnInit {
         bounds.extend(mapCenter);
         const centro = bounds.getCenter();
 
-        this.loadFilteredMap(mapCenter, zoom, state.gasStation._id, centro, state.dist, stationCoords);
-
+        this.loadFilteredMap(mapCenter, zoom, state.gasStation._id, centro, state.dist, stationCoords, state.gasStation._flagId);
 
       } else {
         this.loadMap(mapCenter);
@@ -142,7 +141,8 @@ export class MapPage implements OnInit {
     gasStationId: string,
     centerMap: google.maps.LatLng,
     stationDist: any,
-    stationCoords: { lat: number, lng: number }) {
+    stationCoords: { lat: number, lng: number },
+    flagId: number) {
     const mapElement = document.getElementById('map');
     if (mapElement) {
 
@@ -173,13 +173,20 @@ export class MapPage implements OnInit {
         zoom: 17
       });
 
+      let pathLogoMarker = "default_pin.png";
+
+      if(flagId == 6 || flagId == 7) pathLogoMarker = "ale-logo-marker.png";
+      if(flagId == 74 || flagId == 109) pathLogoMarker = "shell-logo-marker.png";
+      if(flagId == 65) pathLogoMarker = "ipiranga-logo-marker.png";
+      if(flagId == 89) pathLogoMarker = "br-logo-marker.png";
+
       let markerPosition1 = new google.maps.LatLng(stationCoords.lat, stationCoords.lng);
       let marker1 = new google.maps.Marker({
         position: markerPosition1,
         map: mapForPlotRoute,
         title: 'Posto Selecionado',
         icon: {
-          url: 'assets/imgs/default_pin.png',  // Caminho para a imagem do ícone
+          url: 'assets/imgs/'+ pathLogoMarker,  // Caminho para a imagem do ícone
           scaledSize: new google.maps.Size(30, 35)  // Tamanho redimensionado do ícone (largura, altura)
         }
       });
@@ -346,8 +353,6 @@ export class MapPage implements OnInit {
             this.gasStations = data;
 
             this.gasStations.forEach(gasstation => {
-
-              console.log(gasstation.flagId)
 
               let pathLogoMarker = "default_pin.png";
 
